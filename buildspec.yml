@@ -11,9 +11,12 @@ phases:
       python: 3.8
   pre_build:
     commands:
+      - echo Install needed packages
       - pip install -r requirements/all.txt
+      - echo Run migration scripts
       - bin/dj.sh makemigrations
       - bin/dj.sh migrate
+      - echo Run testing scripts
       - bin/dj-test.sh
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
