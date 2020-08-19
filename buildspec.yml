@@ -10,6 +10,9 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - bin/dj.sh makemigrations
+      - bin/dj.sh migrate
+      - bin/dj-test.sh
   build:
     commands:
       - echo Build started on `date`
