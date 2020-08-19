@@ -18,8 +18,8 @@ phases:
 #    - docker tag drf-membership:latest 011590240448.dkr.ecr.us-east-1.amazonaws.com/drf-membership:latest
 #    - docker push 011590240448.dkr.ecr.us-east-1.amazonaws.com/drf-membership:latest
     - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 011590240448.dkr.ecr.us-east-1.amazonaws.com
-    - COMMIT_HASH=$(echo $CODEBUILD_SOURCE_VERSION | cut -c 1-7)
-    - IMAGE_TAG=${COMMIT_HASH:=latest}
+#    - COMMIT_HASH=$(echo $CODEBUILD_SOURCE_VERSION | cut -c 1-7)
+    - IMAGE_TAG=latest
     - REPOSITORY_URI=011590240448.dkr.ecr.us-east-1.amazonaws.com/drf-membership
   build:
     commands:
