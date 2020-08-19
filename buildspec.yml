@@ -6,6 +6,9 @@ env:
     IMAGE_REPO_NAME: "drf-membership"
     AWS_ACCOUNT_ID: "011590240448"
 phases:
+  install:
+    runtime-versions:
+      python: 3.8
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
