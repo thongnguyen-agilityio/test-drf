@@ -1,0 +1,30 @@
+# Generate real Swagger/OpenAPI 2.0 specifications from a Django Rest Framework API.
+# https://pypi.org/project/drf-yasg/
+drf-yasg==1.17.0
+
+# Pandas
+# https://pypi.org/project/pandas/
+pandas==1.0.2
+
+# Django REST framework core
+# https://pypi.org/project/drf-core/
+drf-core==0.0.3
+
+# Django REST framework generator
+# https://pypi.org/project/drf-app-generators/
+drf-app-generators==0.0.6
+
+
+# Django REST framework partial response
+# https://pypi.org/project/drf-partial-response/
+drf-partial-response==0.1.5
+
+# Django REST - FlexFields
+# https://pypi.org/project/drf-flex-fields/
+drf-flex-fields==0.7.5
+
+# Pendulum is a Python package to ease datetimes manipulation.
+# https://pendulum.eustace.io/docs/
+pendulum==2.1.0
+
+drf-extensions==0.6.0
