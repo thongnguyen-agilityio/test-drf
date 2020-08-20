@@ -16,5 +16,5 @@ DEBUG = False
 ALLOWED_HOSTS += [
     '127.0.0.1',
     '0.0.0.0',
-    os.getenv('DOMAIN', 'localhost')
+    'drf-ecs-alb-159461053.us-east-1.elb.amazonaws.com'
 ]
