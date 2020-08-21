@@ -14,7 +14,8 @@ DATABASES = {
 DEBUG = False
 
 ALLOWED_HOSTS += [
+    'localhost',
     '127.0.0.1',
     '0.0.0.0',
-    'drf-ecs-alb-159461053.us-east-1.elb.amazonaws.com'
+    os.getenv('DOMAIN', '')
 ]
