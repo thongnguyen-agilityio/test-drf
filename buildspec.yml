@@ -37,6 +37,7 @@ phases:
       - docker push $REPOSITORY_URL:latest
       - docker push $REPOSITORY_URL:$IMAGE_TAG
       - echo Writing image definitions file...
+      - echo $REPOSITORY_URI:$IMAGE_TAG
       - printf '[{"name":"drf-membership","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
