@@ -13,7 +13,10 @@ DATABASES = {
 
 DEBUG = False
 
-import os
+ALLOWED_HOSTS = [
+    os.environ.get('DOMAIN')
+]
+
 import requests
 
 EC2_PRIVATE_IP = None
@@ -24,16 +27,7 @@ try:
     data = resp.json()
     print(data)
 
-    container_name = os.environ.get('DOCKER_CONTAINER_NAME', None)
-    search_results = [x for x in data['Containers'] if x['Name'] == container_name]
-
-    if len(search_results) > 0:
-        container_meta = search_results[0]
-    else:
-        # Fall back to the pause container
-        container_meta = data['Containers'][0]
-
-    EC2_PRIVATE_IP = container_meta['Networks'][0]['IPv4Addresses'][0]
+    EC2_PRIVATE_IP = data['Networks'][0]['IPv4Addresses'][0]
 except:
     # silently fail as we may not be in an ECS environment
     pass
@@ -42,3 +36,5 @@ if EC2_PRIVATE_IP:
     # Be sure your ALLOWED_HOSTS is a list NOT a tuple
     # or .append() will fail
     ALLOWED_HOSTS.append(EC2_PRIVATE_IP)
+
+print('EC2_PRIVATE_IP', EC2_PRIVATE_IP)
