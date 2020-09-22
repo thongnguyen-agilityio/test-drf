@@ -1,0 +1,43 @@
+version: 0.2
+env:
+  variables:
+    IMAGE_REPO_NAME: "drf-membership"
+    AWS_DEFAULT_REGION: "us-east-1"
+    AWS_ACCOUNT_ID: "011590240448"
+  parameter-store:
+    RDS_DB_USER: "/CodeBuild/membership/username"
+    RDS_DB_PASSWORD: "/CodeBuild/membership/password"
+    
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - echo $AWS_DEFAULT_REGION
+      - echo $AWS_ACCOUNT_ID
+      - echo $RDS_DB_USER
+      - echo $RDS_DB_PASSWORD
+
+      # - aws --version
+      # - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      # - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME
+      # - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      # - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      # - echo Install needed packages
+      # - bin/install.sh
+      # - echo Run migration scripts
+      # - bin/dj.sh makemigrations
+      # - bin/dj.sh migrate
+      # - echo Run testing scripts
+      # - bin/dj-test.sh
+      # - echo Logging in to Amazon ECR...
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image to ECR.....
